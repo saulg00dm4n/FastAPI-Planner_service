@@ -2,25 +2,25 @@ pipeline{
     agent any
 
     stages {
-        stage("Project") {
+        stage("get proj") {
             steps {
-                git "https://github.com/philippkov/FastApi.git"
+                git branch: 'main', url: "https://github.com/saulg00dm4n/FastAPI-Planner_service"
             }
 
         }
 
-        stage("Run") {
+        stage("start") {
             steps {
                 script {
                 sh """
-                docker rm -f fast-api-container
-                docker rmi fast-api-image
+                docker rm -f skuf-container
+                docker rmi skuf-image
 
-                docker compose build fast-api-service
+                docker compose build skuf-service
                 docker run -d \
-                      --name fast-api-container \
-                      -p 8081:8081 \
-                      fast-api-image
+                      --name skuf-container \
+                      -p 8022:8001 \
+                      skuf-image
                 """
                 }
             }
