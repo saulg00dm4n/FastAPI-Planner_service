@@ -19,7 +19,7 @@ pipeline{
                 docker compose build skuf-service
                 docker run -d \
                       --name skuf-container \
-                      -p 8022:8001 \
+                      -p 8000:8001 \
                       skuf-image
                 """
                 }
